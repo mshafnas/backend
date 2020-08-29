@@ -24,3 +24,7 @@ Route::get('product/{id}', 'API\ProductController@show');
 Route::post('product', 'API\ProductController@store');
 Route::put('product/{id}', 'API\ProductController@update');
 Route::delete('product/{id}', 'API\ProductController@destroy');
+
+// auth routes
+Route::post('login', 'API\UserController@login');
+Route::post('register', 'API\UserController@register');
