@@ -2,34 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
-use App\OrderPizza;
 use App\User;
+use App\Property;
+use Carbon\Carbon;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
-
-class PizzaController extends Controller
+class PropertyController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('myorders')->with('orders', $user->order);
+        // $user_id = auth()->user()->id;
+        // $user = User::find($user_id);
+        // $current_date = Carbon::now()->toDateString();
+        // return $user->property;
+
+        // $week_property = Property::with(['user'])->where('expiry_date', '=', Carbon::now()->addDays(8)->toDateString())->get();
+             
+        $tr = new GoogleTranslate('en');
+        echo $tr->setSource('fa')->setTarget('en')->translate('خوابه ');
     }
 
     /**
@@ -39,7 +39,7 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        return view('order');
+        
     }
 
     /**
@@ -50,23 +50,7 @@ class PizzaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'address' => 'required',
-            'size' => 'required'
-        ]);
-
-        $order = new OrderPizza;
-        $order->user_id = auth()->user()->id;
-        $order->address = $request->address;
-        $order->size = $request->size;
-        $order->toppings = implode(',', $request->toppings);
-        $order->note = $request->note;
-        $order->status_id = 1;
-        $order->save();
-
-        return redirect()->route('user.orders.show', $order)->with('message', 'Order received!');
-        
-        
+        //
     }
 
     /**
@@ -77,8 +61,7 @@ class PizzaController extends Controller
      */
     public function show($id)
     {
-        $order = OrderPizza::find($id);
-        return view('myorder')->with('order', $order);
+        //
     }
 
     /**
@@ -113,5 +96,9 @@ class PizzaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function convert(){
+
     }
 }

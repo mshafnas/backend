@@ -16,7 +16,9 @@
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",
-        "pusher/pusher-php-server": "~4.0"
+        "pusher/pusher-php-server": "~4.0",
+        "stichoza/google-translate-php": "^4.1",
+        "unbabel/unbabel-php": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

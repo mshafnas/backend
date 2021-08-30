@@ -41,3 +41,6 @@ Route::prefix('admin')->group(function() {
 });
 
 
+Route::resource('/property', 'PropertyController');
+
+
